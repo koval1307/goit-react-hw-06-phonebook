@@ -53,15 +53,17 @@ class Form extends Component {
               name="name"
               value={name}
               onChange={this.handleChange}
+              required
             />
           </label>
           <label>
             Phone number:
             <TextField
-              type="tel"
+          type='tel'
               name="number"
               value={this.state.number}
               onChange={this.handleChange}
+              required
             />
           </label>
 
