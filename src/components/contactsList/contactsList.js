@@ -2,23 +2,22 @@ import React from "react";
 import {connect} from "react-redux"
 import styles from "./contacts-list.module.css";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import contactsActions from "../../redux/contacts-actions";
-import { ContactListItem } from "../contactListItem/contactListItem";
-function ContactList({ contactList, deleteContact }) {
+
+import  ContactListItem from "../contactListItem/contactListItem";
+function ContactList({ contactList, }) {
   return (
     <TransitionGroup
       component="ul"
       
       className={styles.contact__list}
     >
-      {contactList.map((el) => {
+      {contactList.map(({id}) => {
         return (
-          <CSSTransition key={el.id} timeout={250} unmountOnExit
+          <CSSTransition key={id} timeout={250} unmountOnExit
            classNames={styles}>
             <ContactListItem
-              key={el.id}
-              contact={el}
-              deleteContact={deleteContact}
+              key={id}
+         id={id}
             />
           </CSSTransition>
         );
@@ -27,9 +26,7 @@ function ContactList({ contactList, deleteContact }) {
   );
 }
 
-const mapDispatcToProps = {
-  deleteContact: contactsActions.deleteContact
-}
+
 const mapStateToProps = (state) => {
   const { items, filter } = state.contacts
   const normalizedFilter = filter.toLowerCase();
@@ -40,4 +37,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatcToProps) (ContactList);
+export default connect(mapStateToProps, ) (ContactList);
